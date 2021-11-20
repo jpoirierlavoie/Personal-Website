@@ -1,0 +1,6 @@
+.gcloudignore
+.git
+.gitignore
+app2.yaml
+venv
+__pycache__

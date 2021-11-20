@@ -1,0 +1,30 @@
+steps:
+- name: "gcr.io/cloud-builders/gcloud"
+  id: "Decrypt Environment Variables"
+  args:
+    [
+    "kms",
+    "decrypt",
+    "--key=app-engine",
+    "--keyring=envvars",
+    "--location=northamerica-northeast1",
+    "--ciphertext-file=config.encrypted",
+    "--plaintext-file=config.py"
+    ]
+  timeout: 60s
+- name: "gcr.io/cloud-builders/gcloud"
+  id: "Deploy App Engine"
+  waitFor:
+    [
+    "Decrypt Environment Variables"
+    ]
+  args:
+    [
+      "app",
+      "deploy",
+      "app.yaml",
+      "--bucket=gs://jpoirierlavoie-ca.appspot.com",
+      "--promote",
+      "--stop-previous-version"
+    ]
+timeout: 180s
