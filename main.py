@@ -48,10 +48,6 @@ def blog():
 def manifest():
     return app.send_static_file('manifest.webmanifest'), 200, {'Content-Type': 'application/manifest+json'}
 
-@app.route('/service-worker.js')
-def worker():
-    return app.send_static_file('service-worker.js'), 200, {'Content-Type': 'text/javascript'}
-
 @app.route('/robots.txt')
 def crawler():
     return app.send_static_file('robots.txt'), 200, {}
