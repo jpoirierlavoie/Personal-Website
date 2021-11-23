@@ -1,6 +1,4 @@
 from flask import Flask, render_template, url_for, redirect
-from forms import ContactForm
-from google.cloud import datastore
 
 app = Flask(__name__)
 
