@@ -400,7 +400,7 @@
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 vertical-line">
               <!-- contact form -->
               <div class="contacts-form scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <form id="cform" action="https://northamerica-northeast1-jpoirierlavoie-ca.cloudfunctions.net/sendgrid" method="post">
+                <form id="cform" action="https://northamerica-northeast1-jpoirierlavoie-ca.cloudfunctions.net/sendgrid" method="POST">
                   <label>
                     Name
                     <input type="text" name="name" placeholder="Enter your full name" />
@@ -413,7 +413,7 @@
                     Message
                     <textarea name="message" placeholder="Enter your message here"></textarea>
                   </label>
-                  <a href="#" class="btn" onclick="$('#cform').submit(); return false;">Submit</a>
+                  <button type="submit" class="btn">Submit</button>
                 </form>
               </div>
               <div class="alert-success" style="display: none;">

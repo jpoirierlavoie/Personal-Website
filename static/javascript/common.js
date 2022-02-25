@@ -1,11 +1,3 @@
-/**
-*	Ober - CV Resume Template (HTML)
-*	Version: 1.0
-*	Author: beshleyua
-*	Author URL: http://themeforest.net/user/beshleyua
-*	Copyright © Ober by beshleyua. All Rights Reserved.
-**/
-
 ( function( $ ) {
 	'use strict';
 
@@ -233,21 +225,6 @@ $(function() {
 	});
 
 	/*
-		Carousel Testimonials
-	*/
-  var swiperTestimonials = new Swiper('.js-testimonials', {
-    slidesPerView: 1,
-	  spaceBetween: 50,
-		loop: false,
-		speed: 1000,
-	  pagination: false,
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		}
-	});
-
-	/*
 		Initialize portfolio items
 	*/
 	var $container = $('.works-items');
@@ -417,45 +394,6 @@ function initCursor() {
 
 	function lerp (start, end, amt) {
 		return (1-amt)*start+amt*end
-	}
-
-	/*
-		Validate Contact Form
-	*/
-	if($('.contacts-form').length) {
-	$('#cform').validate({
-		rules: {
-			name: {
-				required: true
-			},
-			message: {
-				required: true
-			},
-			email: {
-				required: true,
-				email: true
-			}
-		},
-		success: 'valid',
-		submitHandler: function() {
-			$.ajax({
-				url: 'mailer/feedback.php',
-				type: 'post',
-				dataType: 'json',
-				data: 'name='+ $("#cform").find('input[name="name"]').val() + '&email='+ $("#cform").find('input[name="email"]').val() + '&message=' + $("#cform").find('textarea[name="message"]').val(),
-				beforeSend: function() {
-
-				},
-				complete: function() {
-
-				},
-				success: function(data) {
-					$('#cform').fadeOut();
-					$('.alert-success').delay(1000).fadeIn();
-				}
-			});
-		}
-	});
 	}
 }
 
