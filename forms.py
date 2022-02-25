@@ -3,11 +3,12 @@ from wtforms import StringField, TextField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
 
 class ContactForm(FlaskForm):
-    name = StringField('Name',[DataRequired()])
+    first_name = StringField('First Name',[DataRequired()])
+    last_name = StringField('Last Name',[DataRequired()])
     email = StringField('Email',[Email(message=('Not a valid email address.')),DataRequired()])
     subject = StringField('Subject',[DataRequired()])
-    message = TextField('Message',[DataRequired(),Length(min=4,message=('Your message is too short.'))])
-    recaptcha = RecaptchaField()
+    subject = StringField('Subject',[DataRequired()])
+    message = TextField('Message',[DataRequired(),Length(min=20,message=('Your message is too short.'))])
     submit = SubmitField('Submit')
 
 class PostForm(FlaskForm):
