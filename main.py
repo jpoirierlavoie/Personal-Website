@@ -2,12 +2,12 @@
 #              Import Packages                #
 ###############################################
 from flask import Flask, request, render_template, url_for, redirect
-from google.cloud import secretmanager
 
 ###############################################
 #              Import Secrets                 #
 ###############################################
 def access_secret(secret_id):
+    from google.cloud import secretmanager
     client = secretmanager.SecretManagerServiceClient()
     name = f"projects/149647873417/secrets/{secret_id}/versions/1"
     response = client.access_secret_version(request={'name': name})
@@ -50,7 +50,6 @@ def contact():
         return  render_template('index.html#contact', error = error, first_name = first_name, last_name = last_name, email = email, subject = subject, message = message)
     return render_template('index.html')
  
-
 @app.route('/manifest.webmanifest')
 def manifest():
     return app.send_static_file('manifest.webmanifest'), 200, {'Content-Type': 'application/manifest+json'}

@@ -11,8 +11,3 @@ class ContactForm(FlaskForm):
     message = TextField('Message',[DataRequired(),Length(min=20,message=('Your message is too short.'))])
     submit = SubmitField('Submit')
 
-class PostForm(FlaskForm):
-    title = StringField('Title',[DataRequired()])
-    category = StringField('Category',[DataRequired()])
-    article = TextAreaField('Article',[DataRequired(),Length(min=4,message=('Your message is too short.'))])
-    submit = SubmitField('Submit')
