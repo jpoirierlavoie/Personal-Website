@@ -1,16 +1,19 @@
 ###############################################
 #              Import Packages                #
 ###############################################
+
 from flask import Flask, request, render_template, url_for, redirect
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
+from flask_talisman import Talisman
 import email_validator
 import sendgrid
 
 ###############################################
 #              Access Secrets                 #
 ###############################################
+
 def access_secret(secret_id):
     from google.cloud import secretmanager
     client = secretmanager.SecretManagerServiceClient()
@@ -20,13 +23,61 @@ def access_secret(secret_id):
     return payload
 
 ###############################################
-#              Define flask app               #
+#      Define and Configure Application       #
 ###############################################
+
 app = Flask(__name__)
-app.secret_key = access_secret('Flask-WTF')
+app.config['SECRET_KEY'] = access_secret('Flask')
+app.config['RECAPTCHA_PUBLIC_KEY'] = access_secret('Recaptcha-Key')
+app.config['RECAPTCHA_PRIVATE_KEY']= access_secret('Recaptcha-Secret')
 
 ###############################################
-#                  Routes                     #
+#             Secure Application              #
+###############################################
+
+talisman = Talisman(
+    app,
+    content_security_policy_nonce_in=['script-src'],
+    content_security_policy = {
+        'default-src': "'none'",
+        'img-src': [
+            "'self'",
+            'https://www.google.com',
+            'https://www.google.ca',
+            'https://www.google-analytics.com'
+        ],
+        'script-src': [
+            "'self'",
+            'https://www.googletagmanager.com',
+            'https://www.google.com',
+            'https://code.jquery.com',
+            'https://cdn.jsdelivr.net',
+            'https://www.google-analytics.com',
+            'https://www.gstatic.com',
+        ],
+        'style-src': [
+            "'self'",
+            'https://fonts.googleapis.com',
+            'https://cdn.jsdelivr.net',
+            "'unsafe-inline'"
+        ],
+        'font-src': [
+            'https://fonts.gstatic.com',
+            'https://cdn.jsdelivr.net',
+            'data:'
+        ],
+        'connect-src': [
+            'https://www.google-analytics.com',
+            'https://stats.g.doubleclick.net'
+        ],
+        'frame-src': [
+            'https://www.google.com/'
+        ]       
+    }
+)
+
+###############################################
+#                  Forms                      #
 ###############################################     
 
 class ContactForm(FlaskForm):
@@ -36,7 +87,12 @@ class ContactForm(FlaskForm):
     subject = StringField('Subject',[DataRequired()])
     subject = StringField('Subject',[DataRequired()])
     message = TextAreaField('Message',[DataRequired(),Length(min=20,message=('Your message is too short.'))])
+    recaptcha = RecaptchaField()
     submit = SubmitField('Submit')
+
+###############################################
+#                 Routes                      #
+###############################################
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
