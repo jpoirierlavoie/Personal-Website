@@ -54,11 +54,13 @@ talisman = Talisman(
             'https://cdn.jsdelivr.net',
             'https://www.google-analytics.com',
             'https://www.gstatic.com',
+            'https://unpkg.com'
         ],
         'style-src': [
             "'self'",
             'https://fonts.googleapis.com',
             'https://cdn.jsdelivr.net',
+            'https://unpkg.com',
             "'unsafe-inline'"
         ],
         'font-src': [
