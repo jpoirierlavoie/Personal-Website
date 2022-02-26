@@ -5,11 +5,11 @@ from flask import Flask, request, render_template, url_for, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
-
 import email_validator
+import sendgrid
 
 ###############################################
-#              Import Secrets                 #
+#              Access Secrets                 #
 ###############################################
 def access_secret(secret_id):
     from google.cloud import secretmanager
@@ -40,28 +40,42 @@ class ContactForm(FlaskForm):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    sg = sendgrid.SendGridAPIClient(access_secret('Sendgrid'))
     form = ContactForm()
     if request.method == 'POST':
-        first_name = request.form["first_name"]
-        last_name = request.form["last_name"]
-        email = request.form["email"]
-        subject = request.form["subject"]
-        message = request.form["message"]
-        
+        data = {
+            "from": {
+                "email": "noreply@jpoirierlavoie.ca",
+                "name": request.form["first_name"] + " " + request.form["last_name"]
+            },
+            "reply_to": {
+                "email": request.form["email"],
+                "name": request.form["first_name"] + " " + request.form["last_name"]
+            },
+            "content": [
+                {
+                    "type": "text/plain",
+                    "value": request.form["message"]
+                }
+            ],
+            "personalizations": [
+                {
+                    "to": [
+                        {
+                            "email": "jpoirierlavoie@gmail.com",
+                            "name": "Jason Poirier Lavoie"
+                        }
+                    ],
+                    "subject": "Contact Form: " + request.form["subject"]
+                }
+            ]
+        }
+        response = sg.client.mail.send.post(request_body=data)
+        if response.status_code == 202:
+            return ("Email sent successfully.", 200)
+        return ("Something went wrong. Status Code: " + str(response.status_code))
     else:
         return render_template('index.html', form=form)
-    
-@app.route('/manifest.webmanifest')
-def manifest():
-    return app.send_static_file('manifest.webmanifest'), 200, {'Content-Type': 'application/manifest+json'}
-
-@app.route('/robots.txt')
-def crawler():
-    return app.send_static_file('robots.txt'), 200, {}
-
-@app.route('/sitemap.xml')
-def sitemap():
-    return app.send_static_file('sitemap.xml'), 200, {'Content-Type': 'text/xml; charset=utf-8'}
 
 ###############################################
 #             Development Server              #
