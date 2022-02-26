@@ -5,6 +5,7 @@ from flask import Flask, request, render_template, url_for, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
+
 import email_validator
 
 ###############################################
@@ -22,7 +23,7 @@ def access_secret(secret_id):
 #              Define flask app               #
 ###############################################
 app = Flask(__name__)
-app.secret_key = 'testtesttest'
+app.secret_key = access_secret('Flask-WTF')
 
 ###############################################
 #                  Routes                     #
