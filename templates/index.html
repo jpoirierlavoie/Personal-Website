@@ -318,29 +318,29 @@
                 <form id="cform" action="https://northamerica-northeast1-jpoirierlavoie-ca.cloudfunctions.net/sendgrid" method="POST">
                     <div class="row">
                         <div class="col">
-                            <label>First Name
-                                <input type="text" name="first_name" placeholder="Enter your given name" value="{{ first_name }}" required>
-                                </label>
+                        {{form.first_name.label}}
+                        {{form.first_name(placeholder='Enter your given name')}}
                         </div>
                         <div class="col">
-                            <label>Last Name
-                                <input type="text" name="last_name" placeholder="Enter your surname" value="{{ last_name }}" required>
-                                </label>
+                        {{form.last_name.label}}
+                        {{form.last_name(placeholder='Enter your surname')}}
                         </div>
                     </div>
-                    <label>
-                    Email Address
-                    <input type="email" name="email" placeholder="Enter your email address" value="{{ email }}" required>
-                  </label>
-                  <label>
-                    Subject
-                    <input type="text" name="subject" placeholder="Enter the reason you're reaching out" value="{{ subject }}" required>
-                  </label>
-                  <label>
-                    Message
-                    <textarea name="message" placeholder="Enter your message here" value="{{ message }}" required></textarea>
-                  </label>
-                  <button type="submit" class="btn">Submit</button>
+                    <div>
+                    {{form.email.label}}
+                        {{form.email(placeholder='Enter your email address')}}
+                    </div>
+                    <div>
+                        {{form.subject.label}}
+                        {{form.subject(placeholder='Enter the reason you are reaching out')}}
+                    </div>
+                    <div>
+                        {{form.message.label}}
+                        {{form.message(placeholder='Enter your message here')}}
+                   </div>
+                    <div>
+                  {{form.submit}}
+                    </div>
                 </form>
               </div>
               <div class="alert-success" style="display: none;">

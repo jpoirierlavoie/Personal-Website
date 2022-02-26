@@ -2,6 +2,10 @@
 #              Import Packages                #
 ###############################################
 from flask import Flask, request, render_template, url_for, redirect
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired, Email, Length
+import email_validator
 
 ###############################################
 #              Import Secrets                 #
@@ -18,14 +22,32 @@ def access_secret(secret_id):
 #              Define flask app               #
 ###############################################
 app = Flask(__name__)
-app.secret_key = access_secret('Flask-WTF')
+app.secret_key = 'testtesttest'
 
 ###############################################
 #                  Routes                     #
-###############################################           
-@app.route('/')
+###############################################     
+
+class ContactForm(FlaskForm):
+    first_name = StringField('First Name',[DataRequired()])
+    last_name = StringField('Last Name',[DataRequired()])
+    email = StringField('Email',[Email(message=('Not a valid email address.')),DataRequired()])
+    subject = StringField('Subject',[DataRequired()])
+    subject = StringField('Subject',[DataRequired()])
+    message = TextAreaField('Message',[DataRequired(),Length(min=20,message=('Your message is too short.'))])
+    submit = SubmitField('Submit')
+
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    form = ContactForm()
+    if request.method == 'POST':
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
+        email = request.form["email"]
+        subject = request.form["subject"]
+        message = request.form["message"]
+    else:
+        return render_template('index.html', form=form)
 
 @app.route('/contact', methods=['POST'])
 def contact():
@@ -62,5 +84,8 @@ def crawler():
 def sitemap():
     return app.send_static_file('sitemap.xml'), 200, {'Content-Type': 'text/xml; charset=utf-8'}
 
+###############################################
+#             Development Server              #
+###############################################
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=True)
