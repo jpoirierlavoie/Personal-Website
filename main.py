@@ -46,32 +46,10 @@ def home():
         email = request.form["email"]
         subject = request.form["subject"]
         message = request.form["message"]
+        
     else:
         return render_template('index.html', form=form)
-
-@app.route('/contact', methods=['POST'])
-def contact():
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    email = request.form['email']
-    subject = request.form['subject']
-    message = request.form['message']
-    error = None
     
-    if not first_name or not first_name.strip():
-        error = 'First name is missing'
-    if not last_name or not last_name.strip():
-        error = 'Lirst name is missing'
-    if not email or not email.strip() or '@' not in email:
-        error = 'Email is missing'
-    if not sunject or not subject.strip():
-        error = 'Message is missing'
-    if not message or not message.strip():
-        error = 'Message is missing' 
-    if error:
-        return  render_template('index.html#contact', error = error, first_name = first_name, last_name = last_name, email = email, subject = subject, message = message)
-    return render_template('index.html')
- 
 @app.route('/manifest.webmanifest')
 def manifest():
     return app.send_static_file('manifest.webmanifest'), 200, {'Content-Type': 'application/manifest+json'}
