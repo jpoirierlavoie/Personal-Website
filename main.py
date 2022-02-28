@@ -37,7 +37,7 @@ app.config['RECAPTCHA_PRIVATE_KEY']= access_secret('Recaptcha-Secret')
 
 talisman = Talisman(
     app,
-    content_security_policy_nonce_in=['script-src'],
+    content_security_policy_nonce_in=['script-src', 'style-src'],
     content_security_policy = {
         'default-src': "'none'",
         'img-src': [
@@ -60,8 +60,7 @@ talisman = Talisman(
             "'self'",
             'https://fonts.googleapis.com',
             'https://cdn.jsdelivr.net',
-            'https://unpkg.com',
-            "'unsafe-inline'"
+            'https://unpkg.com'
         ],
         'font-src': [
             'https://fonts.gstatic.com',
