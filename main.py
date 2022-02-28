@@ -132,7 +132,7 @@ def manifest():
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return app.send_static_file('sitemap.xml'), 200, {'Content-Type': 'text/xml; charset=utf-8'}
+    return app.send_static_file('sitemap.xml'), 200, {'Content-Type': 'application/xml'}
 
 @app.route('/robots.txt')
 def crawler():
