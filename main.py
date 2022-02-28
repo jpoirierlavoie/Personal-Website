@@ -35,24 +35,19 @@ app.config['SECRET_KEY'] = access_secret('Flask')
 
 talisman = Talisman(
     app,
-    content_security_policy_nonce_in=['script-src', 'style-src'],
+    content_security_policy_nonce_in = ['script-src', 'style-src'],
+    strict_transport_security_preload = True,
+    session_cookie_samesite = 'Strict',
     content_security_policy = {
         'default-src': "'none'",
         'img-src': [
-            "'self'",
-            'https://www.google.com',
-            'https://www.google.ca',
-            'https://www.google-analytics.com'
+            "'self'"
         ],
         'script-src': [
             "'self'",
             "'strict-dynamic'",
-            'https://www.googletagmanager.com',
-            'https://www.google.com',
             'https://code.jquery.com',
             'https://cdn.jsdelivr.net',
-            'https://www.google-analytics.com',
-            'https://www.gstatic.com',
             'https://unpkg.com'
         ],
         'style-src': [
@@ -65,13 +60,6 @@ talisman = Talisman(
             'https://fonts.gstatic.com',
             'https://cdn.jsdelivr.net',
             'data:'
-        ],
-        'connect-src': [
-            'https://www.google-analytics.com',
-            'https://stats.g.doubleclick.net'
-        ],
-        'frame-src': [
-            'https://www.google.com/'
         ],
         'frame-ancestors': "'none'",
         'base-uri': "'none'",
