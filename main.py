@@ -3,7 +3,7 @@
 ###############################################
 
 from flask import Flask, request, render_template, url_for, redirect
-from flask_wtf import FlaskForm, RecaptchaField
+from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
 from flask_talisman import Talisman
@@ -28,8 +28,6 @@ def access_secret(secret_id):
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = access_secret('Flask')
-app.config['RECAPTCHA_PUBLIC_KEY'] = access_secret('Recaptcha-Key')
-app.config['RECAPTCHA_PRIVATE_KEY']= access_secret('Recaptcha-Secret')
 
 ###############################################
 #             Secure Application              #
@@ -91,7 +89,6 @@ class ContactForm(FlaskForm):
     subject = StringField('Subject',[DataRequired()])
     subject = StringField('Subject',[DataRequired()])
     message = TextAreaField('Message',[DataRequired(),Length(min=20,message=('Your message is too short.'))])
-    recaptcha = RecaptchaField()
     submit = SubmitField('Submit')
 
 ###############################################
