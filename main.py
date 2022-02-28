@@ -74,7 +74,10 @@ talisman = Talisman(
         ],
         'frame-src': [
             'https://www.google.com/'
-        ]       
+        ],
+        'frame-ancestors': "'none'",
+        'base-uri': "'none'",
+        'form-action': "'none'"
     }
 )
 
