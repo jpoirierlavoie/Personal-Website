@@ -48,6 +48,7 @@ talisman = Talisman(
             "'strict-dynamic'",
             'https://code.jquery.com',
             'https://cdn.jsdelivr.net',
+            'https://cdnjs.cloudflare.com',
             'https://unpkg.com'
         ],
         'style-src': [
@@ -63,7 +64,7 @@ talisman = Talisman(
         ],
         'frame-ancestors': "'none'",
         'base-uri': "'none'",
-        'form-action': "'none'"
+        'form-action': "'self'"
     }
 )
 
