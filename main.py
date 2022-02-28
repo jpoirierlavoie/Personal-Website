@@ -36,6 +36,7 @@ app.config['SECRET_KEY'] = access_secret('Flask')
 talisman = Talisman(
     app,
     content_security_policy_nonce_in = ['script-src', 'style-src'],
+    content_security_policy_report_uri = 'https://jpoirierlavoie.report-uri.com/r/d/csp/enforce',
     strict_transport_security_preload = True,
     session_cookie_samesite = 'Strict',
     content_security_policy = {
@@ -64,6 +65,7 @@ talisman = Talisman(
             'data:'
         ],
         'manifest-src': "'self'",
+        'connect-src': "'self'",
         'frame-ancestors': "'none'",
         'base-uri': "'none'",
         'form-action': "'self'"
@@ -86,6 +88,12 @@ class ContactForm(FlaskForm):
 ###############################################
 #                 Routes                      #
 ###############################################
+
+@app.after_request
+def add_reporting_endpoints(response):
+    response.headers['Report-To']='{"group":"default","max_age":31536000,"endpoints":[{"url":"https://jpoirierlavoie.report-uri.com/a/d/g"}],"include_subdomains":true}'
+    response.headers['NEL']='{"report_to":"default","max_age":31536000,"include_subdomains":true}'
+    return response
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -126,9 +134,13 @@ def home():
     else:
         return render_template('index.html', form=form)
 
-app.route('/manifest.webmanifest')
+@app.route('/manifest.webmanifest')
 def manifest():
     return app.send_static_file('manifest.webmanifest'), 200, {'Content-Type': 'application/manifest+json'}
+
+@app.route('/service-worker.js')
+def service_worker():
+    return app.send_static_file('service-worker.js'), 200, {'Content-Type': 'application/javascript'}
 
 @app.route('/sitemap.xml')
 def sitemap():
