@@ -46,6 +46,7 @@ talisman = Talisman(
         ],
         'script-src': [
             "'self'",
+            "'strict-dynamic'",
             'https://www.googletagmanager.com',
             'https://www.google.com',
             'https://code.jquery.com',
