@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-CA">
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,58 +9,11 @@
         <meta name="theme-color" content="#ebe7e0">
         <meta name="robots" content="index, follow">
         <!--HTML Meta Tags-->
-        <title>Home | Jason Poirier Lavoie</title>
+        <title>{% block title %}{% endblock %} | Jason Poirier Lavoie</title>
         <meta name="author" content="Jason Poirier Lavoie" />
         <meta name="description" content="A Flask blog running on Google Cloud's App Engine service." />
-        <!--Open Graph Protocol | https://ogp.me/-->
-        <meta property="og:locale" content="en_CA" />
-        <meta property="og:url" content="https://jpoirierlavoie.ca/">
-        <meta property="og:type" content="website"/>
-        <meta property="og:site_name" content="Jason Poirier Lavoie" />
-        <meta property="og:title" content="Home | Jason Poirier Lavoie"/>
-        <meta property="og:description" content="A Flask blog running on Google Cloud's App Engine service." />
-        <meta property="og:image" content="https://jpoirierlavoie.ca/static/images/jason_poirier_lavoie_banner.jpg" />
-        <!--Twitter Card Markup-->
-        <meta name="twitter:card" content="summary">
-        <meta property="twitter:domain" content="jpoirierlavoie.ca">
-        <meta property="twitter:url" content="https://jpoirierlavoie.ca/">
-        <meta name="twitter:title" content="Home | Jason Poirier Lavoie">   
-        <meta name="twitter:description" content="A Flask blog running on Google Cloud's App Engine service.">
-        <meta name="twitter:creator" content="@jpoirierlavoie">
-        <meta name="twitter:site" content="@jpoirierlavoie">
-        <meta name="twitter:image" content="https://jpoirierlavoie.ca/static/images/jason_poirier_lavoie_banner.jpg">
-        <!--Schema Markup | https://schema.org/-->
-        <script nonce="{{ csp_nonce() }}" type="application/ld+json">
-        {
-        "@context": "https://schema.org/",
-        "@type": "Person",
-        "name": "Jason Poirier Lavoie",
-        "url": "https://jpoirierlavoie.ca/",
-        "image": "https://jpoirierlavoie.ca/static/images/jason_poirier_lavoie_banner.jpg",
-        "sameAs": [
-            "https://www.facebook.com/jpoirierlavoie",
-            "https://twitter.com/Jpoirierlavoie",
-            "https://www.instagram.com/jpoirierlavoie",
-            "https://www.linkedin.com/in/jpoirierlavoie",
-            "https://github.com/jpoirierlavoie"
-            ],
-        "jobTitle": "Law Student",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Ecole du Barreau"
-            }
-        }
-        </script>
-        <!--Stylesheets-->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik%3A300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700%2C700i%2C800%2C800i%2C900%2C900i%7CSorts+Mill+Goudy&#038;display=swap" type="text/css" media="all" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto" type="text/css" media="all" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" integrity="sha384-He3RckdFB2wffiHOcESa3sf4Ida+ni/fw9SSzAcfY2EPnU1zkK/sLUzw2C5Tyuhj" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/swiper@8.0.6/swiper-bundle.min.css" integrity="sha384-XwNBlnSghcgbtiXxPsNQuR9D/zoe9tF5NnBvo1PGTLcw/JoXNF6GuPRDlZWMBEsC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css" integrity="sha384-6z/M4zCNHzM59q8BnJ1btvx5I7ArdKNNBgb/V4m7ZTUPI4e2SVF0o5IQAGCO414a" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha384-28LxBI7W+Dapb3A8MTRqxV66gb9JlWbIxDXjyt625fYrMXiooed501as+WMytlba" crossorigin="anonymous">
-        <link nonce="{{ csp_nonce() }}" rel="stylesheet" href="static/style/main.css" type="text/css" media="all" />
+        {% include "meta.html" %}
+        {% include "stylesheets.html" %}
         <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
@@ -178,17 +131,6 @@
             </div>
         </div>
         <div class="cursor"></div>
-        <script nonce="{{ csp_nonce() }}" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://unpkg.com/swiper@8.0.6/swiper-bundle.min.js" integrity="sha384-ca4QLjpBJ5iIVAc9hBB79JK0+Vg1+I454KFnSsuILapshRU6DYt/Xf/ApvteX/up" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://unpkg.com/splitting@1.0.6/dist/splitting.min.js" integrity="sha384-taxnKSnzdVS5gZB4jZcieFZlmBPQMFqhdEmCScZsrIFCxX8Zizq4fKJJH5kBwMXT" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://unpkg.com/jarallax@2.0.2/dist/jarallax.min.js" integrity="sha384-52I2fKrpgYmDiQ36xvRZ4RYRXwXVgrXDbjWugOBJwylbmbdS+QorR+bl7p82JbEj" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js" integrity="sha384-vtH+5pZsjdWxaTWlFSCrWM6i0TIG0HKOqJbPo91LB35dvWpVzuWdJeVoNweP+eoY" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js" integrity="sha384-jqrAC88GWDVskFFYTrKSijc+nq9u3kmA1cn4W0iYANXdH1BFtWKyb/YR8RijuWzn" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha384-fexNtx3nPE3sjIQuGk8G2X8X/aSEBVMC58R839hkgsY/Xjhvkm7m2otGhwrdESWj" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/imagesloaded.pkgd.js"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/jquery.scrolla.js"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/jquery.cookie.js"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/common.js"></script>
+        {% include "scripts.html" %}
     </body>
 </html>

@@ -2098,8 +2098,6 @@ body.light-skin .header.sticky .navbar.default:before {
 
 /**
 * Section Hero Started
-* Reduced hero-started .title from 138px to 80
-* Reduced hero-started .subtitle from 40px to 30 px and removed text-transform: uppercase;
 **/
 
 .section.section-started {
@@ -2200,7 +2198,7 @@ body.light-skin .header.sticky .navbar.default:before {
 
 .hero-started .title {
 	font-family: "Sorts Mill Goudy";
-	font-size: 80px;
+	font-size: 138px;
 	line-height: 0.9;
 	color: #FFF;
 	font-weight: 400;
@@ -2208,9 +2206,10 @@ body.light-skin .header.sticky .navbar.default:before {
 }
 
 .hero-started .subtitle {
-	font-size: 30px;
+	font-size: 40px;
 	color: #bdc1c7;
 	font-weight: 300;
+	text-transform: uppercase;
 }
 
 .hero-started .description {
