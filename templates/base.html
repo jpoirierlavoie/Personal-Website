@@ -190,18 +190,5 @@
         <script nonce="{{ csp_nonce() }}" src="static/javascript/jquery.scrolla.js"></script>
         <script nonce="{{ csp_nonce() }}" src="static/javascript/jquery.cookie.js"></script>
         <script nonce="{{ csp_nonce() }}" src="static/javascript/common.js"></script>
-        <script nonce="{{ csp_nonce() }}"> 
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('service-worker.js')
-                        .then(registration => {
-                        console.log('Service Worker is registered', registration);
-                    })
-                        .catch(err => {
-                        console.error('Registration failed:', err);
-                    });
-                });
-            }
-        </script>
     </body>
 </html>

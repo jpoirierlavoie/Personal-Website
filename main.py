@@ -65,15 +65,7 @@ talisman = Talisman(
             'data:'
         ],
         'manifest-src': "'self'",
-        'connect-src': [
-            "'self'",
-            'https://fonts.googleapis.com',
-            'https://cdn.jsdelivr.net',
-            'https://unpkg.com',
-            'https://cdnjs.cloudflare.com',
-            'https://code.jquery.com',
-            'https://fonts.gstatic.com'
-        ],
+        'connect-src': "'self'",
         'frame-ancestors': "'none'",
         'base-uri': "'none'",
         'form-action': "'self'"
@@ -82,7 +74,7 @@ talisman = Talisman(
 
 ###############################################
 #                  Forms                      #
-###############################################     
+###############################################
 
 class ContactForm(FlaskForm):
     first_name = StringField('First Name',[DataRequired()])

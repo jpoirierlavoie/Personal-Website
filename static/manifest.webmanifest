@@ -1,6 +1,7 @@
 {
 "name":"Jason Poirier Lavoie",
 "short_name":"JPL",
+"description":"A Flask blog running on Google Cloud's App Engine service",
 "lang": "en-CA",
 "scope": "/",
 "start_url": "/",
@@ -10,5 +11,6 @@
     ],
 "theme_color":"#ebe7e0",
 "background_color":"#ebe7e0",
-"display":"standalone"
+"display":"standalone",
+"orientation":"any"
 }
