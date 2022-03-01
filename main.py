@@ -132,15 +132,11 @@ def home():
             return ("Email sent successfully.", 200)
         return ("Something went wrong. Status Code: " + str(response.status_code))
     else:
-        return render_template('index.html', form=form)
+        return render_template('index.html', title="Home", form=form)
 
 @app.route('/manifest.webmanifest')
 def manifest():
     return app.send_static_file('manifest.webmanifest'), 200, {'Content-Type': 'application/manifest+json'}
-
-@app.route('/service-worker.js')
-def service_worker():
-    return app.send_static_file('service-worker.js'), 200, {'Content-Type': 'application/javascript'}
 
 @app.route('/sitemap.xml')
 def sitemap():

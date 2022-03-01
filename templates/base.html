@@ -1,24 +1,24 @@
 <!doctype html>
 <html lang="en">
+    {% block head %}
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="HandheldFriendly" content="true">
-        <meta name="msapplication-TileColor" content="#ebe7e0">
-        <meta name="theme-color" content="#ebe7e0">
-        <meta name="robots" content="index, follow">
         <!--HTML Meta Tags-->
-        <title>{% block title %}{% endblock %} | Jason Poirier Lavoie</title>
+        <title>{{ title }} | Jason Poirier Lavoie</title>
         <meta name="author" content="Jason Poirier Lavoie" />
         <meta name="description" content="A Flask blog running on Google Cloud's App Engine service." />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ebe7e0">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#ebe7e0">
+        <meta name="robots" content="index, follow">
         {% include "meta.html" %}
-        {% include "stylesheets.html" %}
+        {% include "stylesheets.html" %}                
+        <link rel="icon" type="image/x-icon" href="static/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
-        <link rel="manifest" href="static/manifest.webmanifest">
     </head>
+    {% endblock %}
     <body class="home page light-skin">
         <div class="container-page ">
             <div class="preloader">
@@ -99,7 +99,8 @@
             <div class="wrapper">
                 {% block content %}{% endblock %}
             </div>
-            <div class="footer">
+            {% block footer %}
+            <footer class="footer">
                 <div class="footer__builder">
                     <div class="container">
                         <div class="row">
@@ -128,7 +129,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </footer>
+            {% endblock %}
         </div>
         <div class="cursor"></div>
         {% include "scripts.html" %}

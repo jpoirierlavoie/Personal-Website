@@ -2,7 +2,7 @@
 "name":"Jason Poirier Lavoie",
 "short_name":"JPL",
 "description":"A Flask blog running on Google Cloud's App Engine service",
-"lang": "en-CA",
+"lang": "en",
 "scope": "/",
 "start_url": "/",
 "icons":[
