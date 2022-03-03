@@ -7,7 +7,21 @@ steps:
       "deploy",
       "app.yaml",
       "--bucket=gs://jpoirierlavoie-ca.appspot.com",
+      "--cache",
       "--promote",
       "--stop-previous-version"
     ]
-timeout: 180s
+- name: "gcr.io/cloud-builders/gcloud"
+  id: "Delete Extra Buckets"
+  waitFor:
+    [
+    "Deploy App Engine"
+    ]
+  args:
+    [
+      "alpha",
+      "storage",
+      "rm",
+      "--recursive",
+      "gs://us.artifacts.jpoirierlavoie-ca.appspot.com"
+    ]
