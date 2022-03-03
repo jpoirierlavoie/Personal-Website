@@ -11,17 +11,3 @@ steps:
       "--promote",
       "--stop-previous-version"
     ]
-- name: "gcr.io/cloud-builders/gcloud"
-  id: "Delete Extra Buckets"
-  waitFor:
-    [
-    "Deploy App Engine"
-    ]
-  args:
-    [
-      "alpha",
-      "storage",
-      "rm",
-      "--recursive",
-      "gs://us.artifacts.jpoirierlavoie-ca.appspot.com"
-    ]
