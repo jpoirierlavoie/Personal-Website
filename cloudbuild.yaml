@@ -12,31 +12,3 @@ steps:
       "--stop-previous-version"
     ]
   timeout: 120s
-- name: "gcr.io/cloud-builders/gcloud"
-  id: "Delete Artifacts Bucket"
-  waitFor:
-    [
-    "Deploy App Engine"
-    ]
-  args:
-    [
-      "alpha",
-      "storage",
-      "rm",
-      "--recursive",
-      "gs://us.artifacts.jpoirierlavoie-ca.appspot.com"
-    ]
-- name: "gcr.io/cloud-builders/gcloud"
-  id: "Delete Staging Bucket"
-  waitFor:
-    [
-    "Deploy App Engine"
-    ]
-  args:
-    [
-      "alpha",
-      "storage",
-      "rm",
-      "--recursive",
-      "gs://staging.jpoirierlavoie-ca.appspot.com"
-    ]
