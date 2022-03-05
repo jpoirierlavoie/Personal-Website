@@ -11,6 +11,7 @@ steps:
       "--promote",
       "--stop-previous-version"
     ]
+  timeout: 120s
 - name: "gcr.io/cloud-builders/gcloud"
   id: "Delete Artifacts Bucket"
   waitFor:

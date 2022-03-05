@@ -95,8 +95,20 @@ def add_reporting_endpoints(response):
     response.headers['NEL']='{"report_to":"default","max_age":31536000,"include_subdomains":true}'
     return response
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def home():
+    return render_template('home.html', title= 'Home')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html', title= 'Blog')
+
+@app.route('/resume')
+def resume():
+    return render_template('resume.html', title='Resume')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
     sg = sendgrid.SendGridAPIClient(access_secret('Sendgrid'))
     form = ContactForm()
     if request.method == 'POST':
@@ -132,7 +144,7 @@ def home():
             return ("Email sent successfully.", 200)
         return ("Something went wrong. Status Code: " + str(response.status_code))
     else:
-        return render_template('index.html', title="Home", form=form)
+        return render_template('contact.html', title="Contact", form=form)
 
 @app.route('/manifest.webmanifest')
 def manifest():

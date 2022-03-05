@@ -1,4 +1,5 @@
 runtime: python39
+default_expiration: "1d"
 
 handlers:
 - url: /static
@@ -6,4 +7,6 @@ handlers:
   secure: always
   redirect_http_response_code: 301
 - url: /.*
+  secure: always
+  redirect_http_response_code: 301
   script: auto
