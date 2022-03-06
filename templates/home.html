@@ -105,74 +105,34 @@
             </div>
           </div>
         </div>
-    		<!-- Blog -->
-    		<div class="blog-items">
+        <!-- Blog -->
+        <div class="blog-items">
+          {% for post in posts %}
           <div class="archive-item">
             <div class="image">
-              <a href="blog-single.html">
-                <img src="static/images/blog4.jpg" alt="Usability Secrets to Create Better User Interfaces" />
+              <a href="/blog/{{ post['slug'] }}">
+                <img src="static/images/{{ post['image'] }}"/>
               </a>
             </div>
             <div class="desc">
               <div class="category scrolla-element-anim-1 scroll-animate" data-animate="active">
-                UI Design<br/><span>November 28, 2021</span>
+                {{ post['category'] }}<br/><span>{{ post['date'] }}</span>
               </div>
               <h3 class="title scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <a href="blog-single.html">Usability Secrets to Create Better User Interfaces</a>
+                <a href="/blog/{{ post['slug'] }}">{{ post['title'] }}</a>
               </h3>
               <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <p>Vivamus interdum suscipit lacus. Nunc ultrices accumsan mattis. Aliquam vel sem vel velit efficitur malesuada. Donec arcu lacus, ornare eget&#8230; </p>
+                <p>{{ post['description'] }}</p>
                 <div class="readmore">
-                  <a href="blog-single.html" class="lnk">Read more</a>
+                  <a href="/blog/{{ post['slug'] }}" class="lnk">Read more</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="archive-item">
-            <div class="image">
-              <a href="blog-single.html">
-                <img src="static/images/blog3.jpg" alt="Three Ways To Level Up Your Photography" />
-              </a>
-            </div>
-            <div class="desc">
-              <div class="category scrolla-element-anim-1 scroll-animate" data-animate="active">
-                Branding<br/><span>November 28, 2021</span>
-              </div>
-              <h3 class="title scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <a href="blog-single.html">Three Ways To Level Up Your Photography</a>
-              </h3>
-              <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <p>Vivamus interdum suscipit lacus. Nunc ultrices accumsan mattis. Aliquam vel sem vel velit efficitur malesuada. Donec arcu lacus, ornare eget&#8230; </p>
-                <div class="readmore">
-                  <a href="blog-single.html" class="lnk">Read more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="archive-item">
-            <div class="image">
-              <a href="blog-single.html">
-                <img src="static/images/single7.jpg" alt="10 Useful Tips to Improve Your UI Designs" />
-              </a>
-            </div>
-            <div class="desc">
-              <div class="category scrolla-element-anim-1 scroll-animate" data-animate="active">
-                Photography<br/><span>November 28, 2021</span>
-              </div>
-              <h3 class="title scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <a href="blog-single.html">10 Useful Tips to Improve Your UI Designs</a>
-              </h3>
-              <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <p>Vivamus interdum suscipit lacus. Nunc ultrices accumsan mattis. Aliquam vel sem vel velit efficitur malesuada. Donec arcu lacus, ornare eget&#8230;</p>
-                <div class="readmore">
-                  <a href="blog-single.html" class="lnk">Read more</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <div class="blog-more-link">
-          <a href="blog.html" class="btn scrolla-element-anim-1 scroll-animate" data-animate="active">View Blog</a>
+          <a href="/blog" class="btn scrolla-element-anim-1 scroll-animate" data-animate="active">View Blog</a>
         </div>
       </section>
 {% endblock %}

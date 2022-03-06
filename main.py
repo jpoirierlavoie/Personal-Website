@@ -9,6 +9,7 @@ from wtforms.validators import DataRequired, Email, Length
 from flask_talisman import Talisman
 import email_validator
 import sendgrid
+from google.cloud import datastore
 
 ###############################################
 #              Access Secrets                 #
@@ -21,6 +22,23 @@ def access_secret(secret_id):
     response = client.access_secret_version(request={'name': name})
     payload = response.payload.data.decode('UTF-8')
     return payload
+
+###############################################
+#             Access Datastore                #
+###############################################
+
+datastore_client = datastore.Client()
+
+def upload_post(post):
+    entity = datastore.Entity(key=datastore_client.key('posts'))
+    entity.update({'content': post})
+    datastore_client.put(entity)
+
+def fetch_posts(limit):
+    query = datastore_client.query(kind='posts')
+    query.order = ['date']
+    posts = query.fetch(limit=limit)
+    return posts
 
 ###############################################
 #      Define and Configure Application       #
@@ -83,7 +101,7 @@ class ContactForm(FlaskForm):
     subject = StringField('Subject',[DataRequired()])
     subject = StringField('Subject',[DataRequired()])
     message = TextAreaField('Message',[DataRequired(),Length(min=20,message=('Your message is too short.'))])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Submit')    
 
 ###############################################
 #                 Routes                      #
@@ -97,11 +115,16 @@ def add_reporting_endpoints(response):
 
 @app.route('/')
 def home():
-    return render_template('home.html', title= 'Home')
+    posts = fetch_posts(5)
+    return render_template('home.html', title='Home', posts=posts)
 
 @app.route('/blog')
 def blog():
     return render_template('blog.html', title= 'Blog')
+
+@app.route('/<post>')
+def blog_post(post):
+    return render_template('/blog/' + post + '.html')
 
 @app.route('/resume')
 def resume():
