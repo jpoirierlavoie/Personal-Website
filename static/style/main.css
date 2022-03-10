@@ -2198,7 +2198,7 @@ body.light-skin .header.sticky .navbar.default:before {
 
 .hero-started .title {
 	font-family: "Sorts Mill Goudy";
-	font-size: 138px;
+	font-size: 80px;
 	line-height: 0.9;
 	color: #FFF;
 	font-weight: 400;
@@ -4519,7 +4519,7 @@ h5.comment-box__details {
 		min-height: auto;
 	}
 	.hero-started .title {
-		font-size: 120px;
+		font-size: 80px;
 	}
 
 	/*works*/

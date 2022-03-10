@@ -26,7 +26,7 @@
             <div class="content">
               <div class="titles">
                 <div class="subtitle splitting-text-anim-2 scroll-animate" data-splitting="chars" data-animate="active">
-                  Law Student
+                    &nbsp;
                 </div>
                 <h2 class="title splitting-text-anim-1 scroll-animate" data-splitting="chars" data-animate="active">
                   Jason<br>Poirier&nbsp;Lavoie
@@ -34,15 +34,12 @@
               </div>
               <div class="description scrolla-element-anim-1 scroll-animate" data-animate="active">
                 <p>
-                  ...
+                  ...  
                 </p>
                   <div class="social-links">
                     <a href="https://github.com/jpoirierlavoie" target="blank" title="Github">
                       <i class="bi-github" role="img" aria-label="GitHub"></i>
                     </a>
-                    <a href="https://www.instagram.com/jpoirierlavoie" target="blank" title="Instagram">
-                    <i class="bi-instagram" role="img" aria-label="Instagram"></i>
-                  </a>
                   <a href="https://twitter.com/Jpoirierlavoie" target="blank" title="Twitter">
                     <i class="bi bi-twitter" role="img" aria-label="Twitter"></i>
                   </a>
@@ -71,17 +68,12 @@
               <div class="profile-box">
                 <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
                   <p>
-                    My name is Federico Ober. I have been studying UI UX Design since October 2020. I like creating
-                    a cool design project.</p><p>Donec imperdiet risus at tortor consequat maximus et eget magna.
-                    Cras ornare sagittis augue, id sollicitudin justo tristique ut. Nullam ex enim, euismod vel
-                    bibendum ultrices, fringilla vel eros. Donec euismod leo lectus, et euismod metus euismod sed.
-                    Quisque quis suscipit ipsum, at pellentesque velit. Duis a congue sem.
+                    My name is Federico Ober. I have been studying UI UX Design since October 2020. I like creating a cool design project.</p><p>Donec imperdiet risus at tortor consequat maximus et eget magna. Cras ornare sagittis augue, id sollicitudin justo tristique ut. Nullam ex enim, euismod vel bibendum ultrices, fringilla vel eros. Donec euismod leo lectus, et euismod metus euismod sed. Quisque quis suscipit ipsum, at pellentesque velit. Duis a congue sem.
                   </p>
                   <p>
-                    In sed dolor ut ligula malesuada sollicitudin. Morbi iaculis convallis arcu, nec maximus tellus
-                    sodales in. Curabitur blandit enim at nisl lobortis, non pretium enim hendrer
+                      This website is the product of my efforts to apply what I had learned about the flask web framework and a general desire to have greater control of the way I share my content on the internet.
                   </p>
-                  <a href="#contact-section" class="btn scrolla-element-anim-1 scroll-animate" data-animate="active">Contact Me</a>
+                  <a href="/contact" class="btn scrolla-element-anim-1 scroll-animate" data-animate="active">Contact Me</a>
                 </div>
               </div>
             </div>
@@ -100,7 +92,7 @@
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 vertical-line">
               <!-- Description -->
               <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <p>Suspendisse potenti. Sed egestas eros eu libero posuere ultrices. Nullam ut aliquet felis, sit amet imperdiet felis.</p>
+                <p>A collection of reflections and comments on a wide variety of subjects and interests.</p>
               </div>
             </div>
           </div>
@@ -110,7 +102,7 @@
           {% for post in posts %}
           <div class="archive-item">
             <div class="image">
-              <a href="/{{ post['slug'] }}">
+              <a href="/blog/{{ post['slug'] }}">
                 <img src="static/images/{{ post['image'] }}"/>
               </a>
             </div>
@@ -119,12 +111,12 @@
                 {{ post['category'] }}<br/><span>{{ post['date'] }}</span>
               </div>
               <h3 class="title scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <a href="/{{ post['slug'] }}">{{ post['title'] }}</a>
+                <a href="/blog/{{ post['slug'] }}">{{ post['title'] }}</a>
               </h3>
               <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
                 <p>{{ post['description'] }}</p>
                 <div class="readmore">
-                  <a href="/{{ post['slug'] }}" class="lnk">Read more</a>
+                  <a href="/blog/{{ post['slug'] }}" class="lnk">Read more</a>
                 </div>
               </div>
             </div>

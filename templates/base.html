@@ -59,11 +59,11 @@
         <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css" integrity="sha384-6z/M4zCNHzM59q8BnJ1btvx5I7ArdKNNBgb/V4m7ZTUPI4e2SVF0o5IQAGCO414a" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha384-28LxBI7W+Dapb3A8MTRqxV66gb9JlWbIxDXjyt625fYrMXiooed501as+WMytlba" crossorigin="anonymous">
-        <link nonce="{{ csp_nonce() }}" rel="stylesheet" href="static/style/main.css" type="text/css" media="all" />
-        <link rel="icon" type="image/x-icon" href="static/favicon/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
+        <link nonce="{{ csp_nonce() }}" rel="stylesheet" href="../static/style/main.css" type="text/css" media="all" />
+        <link rel="icon" type="image/x-icon" href="../static/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
     </head>
     {% endblock %}
     <body class="home page light-skin">
@@ -72,7 +72,7 @@
                 <div class="centrize full-width">
                     <div class="vertical-center">
                         <div class="spinner-logo">
-                            <img src="static/images/ober_logo.png" alt=""/>
+                            <img src="../static/images/ober_logo.png" alt=""/>
                             <div class="spinner-dot"></div>
                             <div class="spinner spinner-line"></div>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                             <div class="logo">
                                 <a href="/">
-                                    <img src="static/images/ober_logo.png" alt=""/></a>
+                                    <img src="../static/images/ober_logo.png" alt=""/></a>
                             </div>
                         </div>
                         <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 align-right">
@@ -141,9 +141,6 @@
                         <a href="https://twitter.com/Jpoirierlavoie" target="blank" class="scrolla-element-anim-1" title="Twitter">
                             <i class="bi bi-twitter" role="img" aria-label="Twitter"></i>
                         </a>
-                        <a href="https://www.instagram.com/jpoirierlavoie" target="blank" class="scrolla-element-anim-1" title="Instagram">
-                            <i class="bi bi-instagram" role="img" aria-label="Instagram"></i>
-                        </a>
                         <a href="https://www.linkedin.com/in/jpoirierlavoie" target="blank" class="scrolla-element-anim-1" title="LinkedIn">
                             <i class="bi bi-linkedin" role="img" aria-label="LinkedIn"></i>
                         </a>
@@ -165,9 +162,6 @@
                                     </a>
                                     <a href="https://twitter.com/Jpoirierlavoie" target="blank" title="Twitter">
                                         <i class="bi bi-twitter" role="img" aria-label="Twitter"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/jpoirierlavoie/" target="blank" title="Instagram">
-                                        <i class="bi bi-instagram" role="img" aria-label="Instagram"></i>
                                     </a>
                                     <a href="https://www.linkedin.com/in/jpoirierlavoie/" target="blank" title="LinkedIn">
                                         <i class="bi bi-linkedin" role="img" aria-label="LinkedIn"></i>
@@ -196,9 +190,9 @@
         <script nonce="{{ csp_nonce() }}" src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js" integrity="sha384-vtH+5pZsjdWxaTWlFSCrWM6i0TIG0HKOqJbPo91LB35dvWpVzuWdJeVoNweP+eoY" crossorigin="anonymous"></script>
         <script nonce="{{ csp_nonce() }}" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js" integrity="sha384-jqrAC88GWDVskFFYTrKSijc+nq9u3kmA1cn4W0iYANXdH1BFtWKyb/YR8RijuWzn" crossorigin="anonymous"></script>
         <script nonce="{{ csp_nonce() }}" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha384-fexNtx3nPE3sjIQuGk8G2X8X/aSEBVMC58R839hkgsY/Xjhvkm7m2otGhwrdESWj" crossorigin="anonymous"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/imagesloaded.pkgd.js"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/jquery.scrolla.js"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/jquery.cookie.js"></script>
-        <script nonce="{{ csp_nonce() }}" src="static/javascript/main.js"></script>
+        <script nonce="{{ csp_nonce() }}" src="../static/javascript/imagesloaded.pkgd.js"></script>
+        <script nonce="{{ csp_nonce() }}" src="../static/javascript/jquery.scrolla.js"></script>
+        <script nonce="{{ csp_nonce() }}" src="../static/javascript/jquery.cookie.js"></script>
+        <script nonce="{{ csp_nonce() }}" src="../static/javascript/main.js"></script>
     </body>
 </html>

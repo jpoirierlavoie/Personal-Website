@@ -2,7 +2,7 @@
 #              Import Packages                #
 ###############################################
 
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect, abort
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
@@ -118,6 +118,14 @@ def add_reporting_endpoints(response):
     response.headers['NEL']='{"report_to":"default","max_age":31536000,"include_subdomains":true}'
     return response
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('error.html'), 500
+
 @app.route('/')
 def home():
     posts = fetch_posts(5)
@@ -128,11 +136,14 @@ def blog():
     posts = fetch_posts(10)
     return render_template('blog.html', title= 'Blog', posts=posts)
 
-@app.route('/<post>')
+@app.route('/blog/<post>')
 def blog_post(post):
     single_post = fetch_post(post)
-    return render_template('/blog/' + post + '.html', post=single_post)
-
+    try:
+        return render_template('/blog/' + post + '.html', post=single_post)
+    except:
+        abort(404)
+        
 @app.route('/resume')
 def resume():
     return render_template('resume.html', title='Resume')
@@ -187,7 +198,11 @@ def sitemap():
 @app.route('/robots.txt')
 def crawler():
     return app.send_static_file('robots.txt'), 200, {'Content-Type': 'text/plain'}
-    
+
+@app.route('/teapot')
+def teapot():
+    abort(418)
+
 ###############################################
 #             Development Server              #
 ###############################################
