@@ -110,7 +110,7 @@
           {% for post in posts %}
           <div class="archive-item">
             <div class="image">
-              <a href="/blog/{{ post['slug'] }}">
+              <a href="/{{ post['slug'] }}">
                 <img src="static/images/{{ post['image'] }}"/>
               </a>
             </div>
@@ -119,12 +119,12 @@
                 {{ post['category'] }}<br/><span>{{ post['date'] }}</span>
               </div>
               <h3 class="title scrolla-element-anim-1 scroll-animate" data-animate="active">
-                <a href="/blog/{{ post['slug'] }}">{{ post['title'] }}</a>
+                <a href="/{{ post['slug'] }}">{{ post['title'] }}</a>
               </h3>
               <div class="text scrolla-element-anim-1 scroll-animate" data-animate="active">
                 <p>{{ post['description'] }}</p>
                 <div class="readmore">
-                  <a href="/blog/{{ post['slug'] }}" class="lnk">Read more</a>
+                  <a href="/{{ post['slug'] }}" class="lnk">Read more</a>
                 </div>
               </div>
             </div>

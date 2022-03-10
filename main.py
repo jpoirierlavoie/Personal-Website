@@ -7,9 +7,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
 from flask_talisman import Talisman
+from google.cloud import datastore
 import email_validator
 import sendgrid
-from google.cloud import datastore
 
 ###############################################
 #              Access Secrets                 #
@@ -27,15 +27,20 @@ def access_secret(secret_id):
 #             Access Datastore                #
 ###############################################
 
-datastore_client = datastore.Client()
+datastore = datastore.Client()
 
-def upload_post(post):
-    entity = datastore.Entity(key=datastore_client.key('posts'))
+def upsert_post(post):
+    entity = datastore.Entity(key=datastore.key('posts'))
     entity.update({'content': post})
     datastore_client.put(entity)
 
+def fetch_post(post):
+    query = datastore.query(kind='posts')
+    query.add_filter = ['slug', '=', post]
+    return query.fetch()
+    
 def fetch_posts(limit):
-    query = datastore_client.query(kind='posts')
+    query = datastore.query(kind='posts')
     query.order = ['date']
     posts = query.fetch(limit=limit)
     return posts
@@ -120,11 +125,13 @@ def home():
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html', title= 'Blog')
+    posts = fetch_posts(10)
+    return render_template('blog.html', title= 'Blog', posts=posts)
 
 @app.route('/<post>')
 def blog_post(post):
-    return render_template('/blog/' + post + '.html')
+    single_post = fetch_post(post)
+    return render_template('/blog/' + post + '.html', post=single_post)
 
 @app.route('/resume')
 def resume():
